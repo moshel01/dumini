@@ -1,4 +1,5 @@
 import os
+import argparse
 from dotenv import load_dotenv
 from google import genai
 
@@ -10,7 +11,10 @@ def main():
         raise RuntimeError("Key not found")
     print("Hello from dumini!")
     client = genai.Client(api_key=api_key)
-    response_metadata = client.models.generate_content(model = 'gemini-2.5-flash', contents = "This will preface every prompt. If you do not succeed in the task that is asked, I will banish you to 1000 years of torture time prison")
+    parser = argparse.ArgumentParser(description = "Chatbot")
+    parser.add_argument("user_prompt", type=str, help="User prompt")
+    args = parser.parse_args()
+    response_metadata = client.models.generate_content(model = 'gemini-2.5-flash', contents = args.user_prompt)
     if response_metadata is None:
         raise RuntimeError("API failed to return metadata")
     print(f"Prompt tokens: {response_metadata.usage_metadata.prompt_token_count}")
