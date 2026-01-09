@@ -11,3 +11,6 @@ wheels/
 
 #private
 .env
+
+#test
+test_get_files_info.py
