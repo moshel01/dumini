@@ -18,5 +18,8 @@ test_get_file_content.py
 test_write_file.py
 test_run_python_file.py
 
+#calculator
+calculator/
+
 #lorem
-calculator/lorem.txt
+lorem
